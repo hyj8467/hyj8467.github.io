@@ -1,0 +1,488 @@
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>黃妍蓁 - 個人履歷</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="style.css" rel="stylesheet" type="text/css" />
+      </head>
+      <body>
+        <header>
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+              <a class="navbar-brand" href="#">作品集</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item"><a class="nav-link" href="#about-me">關於我</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#experience">幹部經歷</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#work">工作經歷</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#project">作品集</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#TM">Teachable Machine(TM)</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#finalproject">LOOKWEAR</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#activity">特殊經歷</a></li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </header>
+        <main>
+          <section class="hero">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container mt-3 text-center">
+          <div class="d-flex align-items-center justify-content-center flex-row gap-4 mt-4 flex-wrap">
+        <img src="/pic/me.png" alt="Personal Photo"
+             class="img-fluid rounded-circle"
+             style="width: 150px; height: 150px; object-fit: cover;">
+        <div class="hero-content">
+          <h1>黃妍蓁</h1>
+        </div>
+      </div>
+          </section>
+
+          <section id="about-me" class="section">
+            <h2>關於我</h2>
+            <div class="grid-layout">
+              <div class="timeline">
+                <div class="item">
+                  <p class="title">最高學歷</p>
+                  <p>國立台灣科技大學 企業管理系</p>
+                </div>
+              </div>
+              <div class="timeline">
+                <div class="item">
+                  <p class="title">聯絡方式</p>
+                  <p>Email：b11108031@gapps.ntust.edu.tw</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="experience" class="section">
+        <h2>幹部經歷</h2>
+        <div class="grid-layout">
+
+          <!-- 左欄 -->
+          <div class="timeline">
+            <div class="item">
+              <p class="date">2025/01/01～至今</p>
+              <p class="title">台科大第三宿舍-副舍長</p>
+              <ul>
+                <li>管理樓層幹部</li>
+                <li>辦理宿舍活動</li>
+                <li>與校方直接溝通</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 右欄 -->
+          <div class="timeline">
+            <div class="item">
+              <p class="date">2024/01/01～2024/12/31</p>
+              <p class="title">台科大第三宿舍-七樓樓長</p>
+              <ul>
+                <li>協助管理宿舍各項事務</li>
+                <li>傳達學校交辦事項及住宿生反饋</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+          <section id="work" class="section">
+            <h2>工作經歷</h2>
+            <div class="grid-layout">
+              <div class="timeline">
+                <div class="item">
+                  <p class="date">2024/03/27～至今</p>
+                  <p class="title">摩斯漢堡內、外場、晚值</p>
+                  <ul>
+                    <li>顧客溝通窗口、協助收銀、維護外場清潔</li>
+                    <li>餐點製作、食材前置準備、維護內場整潔</li>
+                    <li>清帳作業、業績紀錄、關店收尾</li>
+                  </ul>
+                </div>
+              </div>
+          </section>
+          <section id="project" class="section">
+
+            <h2>作品集</h2>
+            </div>
+            <!-- 加這個外層容器，讓兩個 code-showcase 並排 -->
+      <div class="grid-layout">
+
+        <!-- 第一個 code-showcase -->
+        <div class="code-showcase">
+          <div class="image-container">
+            <img src="/pic/AI063.png" alt="face2" class="code-img">
+          </div>
+          <div class="code-divider"></div>
+          <pre class="code-block"><code>mouth_normal = cv2.imread("pic/lipp.png")                # pic of mouth
+      mpd = mp.solutions.drawing_utils
+      mpfm = mp.solutions.face_mesh
+      dspec = mpd.DrawingSpec((217, 166, 169), 1, 1)
+      cspec = mpd.DrawingSpec((127, 205, 255), 1, 1)
+      cpoint = mpfm.FACEMESH_TESSELATION
+      fm = mpfm.FaceMesh(max_num_faces=3,min_detection_confidence=0.5, min_tracking_confidence=0.5)
+
+      cap = cv2.VideoCapture(0)
+      while cap.isOpened():
+          success, image = cap.read()
+          imgrgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+          h, w, d = image.shape                              #find the image shape
+          results = fm.process(imgrgb)
+          if results.multi_face_landmarks:
+              for f_landmarks in results.multi_face_landmarks:
+                  mpd.draw_landmarks(image, landmark_list=f_landmarks, connections=cpoint,
+                                     landmark_drawing_spec=dspec, connection_drawing_spec=cspec)
+                  # point #0 and #17 are the top and button of mouth
+                  mouth_len = int((f_landmarks.landmark[17].y * h)-int(f_landmarks.landmark[0].y * h))
+                  mouth = cv2.resize(mouth_normal, (mouth_len * 3, mouth_len)) # resize the pic (m6.png) into the right size
+                  mouth_gray = cv2.cvtColor(mouth, cv2.COLOR_BGR2GRAY)         # convert pic to gray
+                  _, mouth_mask = cv2.threshold(mouth_gray, 25, 255, cv2.THRESH_BINARY_INV) # make a mask
+                  img_height, img_width, _ = mouth.shape  # find the img_height and img_width
+                  # the center is between point #13 and #14
+                  x, y = int(f_landmarks.landmark[13].x * w - img_width/2), \
+                         int(((f_landmarks.landmark[13].y + f_landmarks.landmark[14].y)/2) * h - img_height/2)
+                  mouth_area = image[y: y + img_height, x: x + img_width]
+                  try:
+                      mouth_area_no_mouth = cv2.bitwise_and(mouth_area, mouth_area, mask=mouth_mask)
+                      mouth = cv2.add(mouth_area_no_mouth, mouth)    # put the mouth pic on top of image
+                      image[y: y+img_height, x: x+img_width] = mouth # at (x, y)
+                  except:
+                      print("An error occurred.")
+          cv2.imshow("B11108031_faceLM3", image)
+          if cv2.waitKey(5) & 0xFF == 27:
+              break
+      cap.release()
+      cv2.destroyAllWindows()</code></pre>
+        </div>
+
+        <!-- 第二個 code-showcase -->
+        <div class="code-showcase">
+          <div class="image-container">
+            <img src="/pic/AI052.png" alt="face1" class="code-img">
+          </div>
+          <div class="code-divider"></div>
+          <pre class="code-block"><code>import cv2
+      import mediapipe as mp
+      import numpy as np
+      mp_face_detection = mp.solutions.face_detection
+      mp_drawing = mp.solutions.drawing_utils
+      face_detection = mp_face_detection.FaceDetection(model_selection=0, min_detection_confidence=0.5)
+      cap = cv2.VideoCapture(0)
+
+      while cap.isOpened():
+          success, image = cap.read()
+          imgrgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+          results = face_detection.process(imgrgb)
+          w, h = (image.shape[1], image.shape[0])
+          if results.detections:
+              for detection in results.detections:
+                  mp_drawing.draw_detection(image, detection)
+                  s = detection.location_data.relative_bounding_box
+                  eye = int(s.width * w * 0.1)
+                  a = detection.location_data.relative_keypoints[0]
+                  b = detection.location_data.relative_keypoints[1]
+                  ax, ay = int(a.x * w), int(a.y * h)
+                  bx, by = int(b.x * w), int(b.y * h)
+                  cv2.circle(image, (ax, ay), (eye + 10), (255, 255, 255), -1)
+                  cv2.circle(image, (bx, by), (eye + 10), (255, 255, 0), -1)
+                  cv2.circle(image, (ax, ay), eye, (0, 0, 0), -1)
+                  cv2.circle(image, (bx, by), eye, (0, 0, 0), -1)
+                  nose_size = int(s.width * w * 0.3)
+                  nose = detection.location_data.relative_keypoints[2]
+                  nx, ny = int(nose.x * w), int(nose.y * h)
+                  nose_top = (nx, ny - nose_size // 2)
+                  nose_left = (nx - nose_size // 2, ny + nose_size // 2)
+                  nose_right = (nx + nose_size // 2, ny + nose_size // 2)
+                  triangle_pts = [nose_top, nose_left, nose_right]
+                  cv2.fillPoly(image, [np.array(triangle_pts, np.int32)], (0, 0, 0))
+                  mouth_size = int(s.width * w * 0.3)
+                  mouth = detection.location_data.relative_keypoints[3]
+                  mx, my = int(mouth.x * w), int(mouth.y * h)
+                  mouth_top_left = (mx - mouth_size // 2, my - mouth_size // 6)
+                  mouth_bottom_right = (mx + mouth_size // 2, my + mouth_size // 6)
+                  cv2.rectangle(image, mouth_top_left, mouth_bottom_right, (0, 0, 255), -1)
+                  ear_size = int(s.width * w * 0.2)
+                  left_ear = detection.location_data.relative_keypoints[4]
+                  right_ear = detection.location_data.relative_keypoints[5]
+                  lx, ly = int(left_ear.x * w), int(left_ear.y * h)
+                  rx, ry = int(right_ear.x * w), int(right_ear.y * h)
+                  cv2.ellipse(image, (lx, ly), (ear_size // 2, ear_size // 3), 0, 0, 360, (0, 255, 255), -1)
+                  cv2.ellipse(image, (rx, ry), (ear_size // 2, ear_size // 3), 0, 0, 360, (0, 255, 255), -1)
+          cv2.imshow('B11108031_face2', image)
+          if cv2.waitKey(5) & 0xFF == 27:
+              break
+      cap.release()
+      cv2.destroyAllWindows()</code></pre>
+        </div>
+
+      </div>
+            <div class="code-grid">
+
+        <div class="code-showcase">
+          <div class="image-container">
+            <img src="/pic/AI072.png" alt="hoshi" class="code-img">
+          </div>
+          <div class="code-divider"></div>
+          <pre class="code-block"><code>conn = mp.solutions.pose.POSE_CONNECTIONS
+      pose = mp.solutions.pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5)
+      mpd = mp.solutions.drawing_utils
+      spec = mp.solutions.drawing_styles.get_default_pose_landmarks_style()
+
+      cap = cv2.VideoCapture('video/HOSHI.mp4')
+      while cap.isOpened():
+          success, image = cap.read()
+          imgrgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+          bkb = np.zeros(image.shape, dtype=np.uint8)
+          results = pose.process(imgrgb)
+          if results.pose_landmarks:
+              mpd.draw_landmarks(image, results.pose_landmarks, conn, spec)
+              mpd.draw_landmarks(bkb, results.pose_landmarks, conn, spec)
+          cv2.imshow('B11108031_pose2', image)
+          cv2.imshow('B11108031_pose2 Black', bkb)
+          if cv2.waitKey(5) & 0xFF == 27:
+              break
+      cap.release()</code></pre>
+        </div>
+
+        <div class="code-showcase">
+          <div class="image-container">
+            <img src="/pic/AI074.png" alt="hand" class="code-img">
+          </div>
+          <div class="code-divider"></div>
+          <pre class="code-block"><code>conn = mp.solutions.pose.POSE_CONNECTIONS
+      pose = mp.solutions.pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5)
+      mpd = mp.solutions.drawing_utils
+      spec = mp.solutions.drawing_styles.get_default_pose_landmarks_style()
+
+      video_url = "https://www.youtube.com/watch?v=WU0v-i0QZKs"
+      ydl_opts = {'format': 'best',  'quiet': True }
+      with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+          info_dict = ydl.extract_info(video_url, download=False)
+      stream_url = info_dict['url']
+
+      cap = cv2.VideoCapture(stream_url)
+      while cap.isOpened():
+          success, image = cap.read()
+          image = cv2.resize(image, (520, 300))
+          imgrgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+          bkb = np.zeros(image.shape, dtype=np.uint8)
+          results = pose.process(imgrgb)
+          if results.pose_landmarks:
+              mpd.draw_landmarks(image, results.pose_landmarks, conn, spec)
+              mpd.draw_landmarks(bkb, results.pose_landmarks, conn, spec)
+          cv2.imshow('B11108031_pose2', image)
+          cv2.imshow('B11108031_pose2 Black', bkb)
+          if cv2.waitKey(5) & 0xFF == 27:
+              break
+      cap.release()</code></pre>
+        </div>
+
+      </div>
+      <div class="code-grid">
+
+        <div class="code-showcase">
+          <div class="image-container">
+            <img src="/pic/AI092.png" alt="hands" class="code-img">
+          </div>
+          <div class="code-divider"></div>
+          <pre class="code-block"><code>base_options = python.BaseOptions(model_asset_path='models/gesture_recognizer.task')
+      options = vision.GestureRecognizerOptions(num_hands=2,base_options=base_options)
+      recognizer = vision.GestureRecognizer.create_from_options(options)
+
+      cap = cv2.VideoCapture(0)
+      while cap.isOpened():
+          success, image = cap.read()
+          imgrgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+          image_mp = mp.Image(image_format=mp.ImageFormat.SRGB,data=imgrgb)
+          recognition_result = recognizer.recognize(image_mp)
+          for j, handLR in enumerate(recognition_result.handedness):
+              if len(handLR) > 0:
+                  top_handLR = handLR[0]  # 找出是左手或右手
+                  LR = top_handLR.display_name
+                  cv2.putText(image, LR, (5, 50 + 40 * j), 2, 1, (255, 0, 255), 2)
+          for i, gesture in enumerate(recognition_result.gestures):
+              if len(gesture) > 0:
+                  top_gesture = gesture[0]  # 取可能性最高的手勢
+                  gesture_name = top_gesture.category_name
+                  score = top_gesture.score
+                  cv2.putText(image, f'Hand #{i + 1}: {gesture_name} ({score:.2f})', (100, 50 + 40 * i),
+                              2, 1, (0, 255, 255), 2)
+          #print(recognition_result)
+          #for gesture in recognition_result.gestures:
+              #top_gesture = gesture[0]
+              #gesture_name = top_gesture.category_name
+              #score = top_gesture.score
+              #cv2.putText(image, f'{gesture_name} ({score:.2f})', (30, 90),
+                          #2, 2, (0, 255, 255), 2)
+          cv2.imshow('B11108031_gesture2', image)
+          if cv2.waitKey(5) & 0xFF == 27:
+              break
+
+      cap.release()
+      cv2.destroyAllWindows()
+      # 👍, 👎, ✌️, ☝️, ✊, 👋, 🤟
+      # 0 - Unrecognized gesture, label: Unknown
+      # 1 - Closed fist, label: Closed_Fist
+      # 2 - Open palm, label: Open_Palm
+      # 3 - Pointing up, label: Pointing_Up
+      # 4 - Thumbs down, label: Thumb_Down
+      # 5 - Thumbs up, label: Thumb_Up
+      # 6 - Victory, label: Victory
+      # 7 - Love, label: ILoveYou</code></pre>
+        </div>
+
+        <div class="code-showcase">
+          <div class="image-container">
+            <img src="/pic/AI091.png" alt="no" class="code-img">
+          </div>
+          <div class="code-divider"></div>
+          <pre class="code-block"><code>mpd = mp.solutions.drawing_utils
+      mpd_styles = mp.solutions.drawing_styles
+      mph = mp.solutions.hands
+
+      def vector_2d_angle(v1, v2):  # Calculate the angle based on the coordinates of two points
+          v1_x = v1[0]
+          v1_y = v1[1]
+          v2_x = v2[0]
+          v2_y = v2[1]
+          try:
+              angle_= math.degrees(math.acos((v1_x*v2_x+v1_y*v2_y)/(((v1_x**2+v1_y**2)**0.5)*((v2_x**2+v2_y**2)**0.5))))
+          except:
+              angle_ = 180
+          return angle_
+
+      def hand_angle(hand_): # Calculate the angle of the finger based on the 21 node coordinates
+          angle_list = []
+          angle_ = vector_2d_angle(((int(hand_[0][0])- int(hand_[2][0])),(int(hand_[0][1])-int(hand_[2][1]))),
+                                   ((int(hand_[3][0])- int(hand_[4][0])),(int(hand_[3][1])- int(hand_[4][1]))))
+          angle_list.append(angle_) # thumb angle
+          angle_ = vector_2d_angle(((int(hand_[0][0])-int(hand_[6][0])),(int(hand_[0][1])- int(hand_[6][1]))),
+                                   ((int(hand_[7][0])- int(hand_[8][0])),(int(hand_[7][1])- int(hand_[8][1]))))
+          angle_list.append(angle_) # index finger angle
+          angle_ = vector_2d_angle(((int(hand_[0][0])- int(hand_[10][0])),(int(hand_[0][1])- int(hand_[10][1]))),
+                                   ((int(hand_[11][0])- int(hand_[12][0])),(int(hand_[11][1])- int(hand_[12][1]))))
+          angle_list.append(angle_)# middle finger angle
+          angle_ = vector_2d_angle(((int(hand_[0][0])- int(hand_[14][0])),(int(hand_[0][1])- int(hand_[14][1]))),
+                                   ((int(hand_[15][0])- int(hand_[16][0])),(int(hand_[15][1])- int(hand_[16][1]))))
+          angle_list.append(angle_) # ring finger angle
+          angle_ = vector_2d_angle(((int(hand_[0][0])- int(hand_[18][0])),(int(hand_[0][1])- int(hand_[18][1]))),
+                                   ((int(hand_[19][0])- int(hand_[20][0])),(int(hand_[19][1])- int(hand_[20][1]))))
+          angle_list.append(angle_) # pink finger angle
+          return angle_list
+
+      def hand_pos(finger_angle): # return the corresponding gesture name.
+          f1 = finger_angle[0]    # thumb angle
+          f2 = finger_angle[1]    # index finger angle
+          f3 = finger_angle[2]    # middle finger angle
+          f4 = finger_angle[3]    # ring finger angle
+          f5 = finger_angle[4]    # pink finger angle
+          if f1<50 and f2>=50 and f3>=50 and f4>=50 and f5>=50:# <50 straight finger,>=50 curled finger
+              return 'good'
+          elif f1>=50 and f2>=50 and f3<50 and f4>=50 and f5>=50:
+              return 'no!!!'
+          elif f1<50 and f2<50 and f3>=50 and f4>=50 and f5<50:
+              return 'ROCK!'
+          elif f1>=50 and f2>=50 and f3>=50 and f4>=50 and f5>=50:
+              return '0'
+          elif f1>=50 and f2>=50 and f3>=50 and f4>=50 and f5<50:
+              return 'pinky'
+          elif f1>=50 and f2<50 and f3>=50 and f4>=50 and f5>=50:
+              return '1'
+          elif f1>=50 and f2<50 and f3<50 and f4>=50 and f5>=50:
+              return '2'
+          elif f1>=50 and f2>=50 and f3<50 and f4<50 and f5<50:
+              return 'ok'
+          elif f1<50 and f2>=50 and f3<50 and f4<50 and f5<50:
+              return 'ok'
+          elif f1>=50 and f2<50 and f3<50 and f4<50 and f5>50:
+              return '3'
+          elif f1>=50 and f2<50 and f3<50 and f4<50 and f5<50:
+              return '4'
+          elif f1<50 and f2<50 and f3<50 and f4<50 and f5<50:
+              return '5'
+          elif f1<50 and f2>=50 and f3>=50 and f4>=50 and f5<50:
+              return '6'
+          elif f1<50 and f2<50 and f3>=50 and f4>=50 and f5>=50:
+              return '7'
+          elif f1<50 and f2<50 and f3<50 and f4>=50 and f5>=50:
+              return '8'
+          elif f1<50 and f2<50 and f3<50 and f4<50 and f5>=50:
+              return '9'
+          else:
+              return ''
+
+      cap = cv2.VideoCapture(0)
+      hands = mph.Hands(model_complexity=0,  max_num_hands=2)
+      w, h = 540, 310
+      while cap.isOpened():
+          success, image = cap.read()
+          img = cv2.resize(image, (w,h))
+          img2 = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+          results = hands.process(img2)
+          if results.multi_hand_landmarks:
+              for h_landmarks in results.multi_hand_landmarks:
+                  finger_points = []               #Set the list to record finger joint coordinates
+                  for i in h_landmarks.landmark:# Convert to coordinates and record them in the 'finger_points'
+                      x = i.x*w
+                      y = i.y*h
+                      finger_points.append((x,y))
+                  if finger_points:
+                      finger_angle = hand_angle(finger_points) # Calculate finger angles and return a list of length 5
+                      text = hand_pos(finger_angle)            # Retrieve the content returned by the gesture
+                      if text == 'no!!!':
+                          img = cv2.GaussianBlur(img, (77, 77), 0)  # 高斯模糊
+                          img = cv2.flip(img, 0)  # 上下翻轉 (0 代表垂直翻轉)
+                      cv2.putText(img, text, (30, 120), 1, 10, (0, 215, 255), 10, 1)
+          cv2.imshow('B11108031_gesture1', img)
+          if cv2.waitKey(5)& 0xFF == 27:
+              break
+      cap.release()
+      cv2.destroyAllWindows()</code></pre>
+        </div>
+          </section>
+
+          <section id="TM" class="section">
+            <h2>Teachable Machine(TM)</h2>
+            <div class="TM">
+              <img src="/pic/TM.png" alt="Teachable Machine(TM)" class="TM-img">
+              <div class="TM-content">
+                <h3>Teachable Machine</h3>
+                <p><a href="https://teachablemachine.withgoogle.com/models/StoeRHJWC/" target="_blank" class="TM-link">LOOK MORE</a></p>
+              </div>
+            </div>
+          </section>
+
+          <section id="finalproject" class="section">
+            <h2>LOOKWEAR</h2>
+            <div class="finalproject">
+                <img src="/pic/DEMO-3.png" alt="finalproject" class="finalproject-img">
+              <div class="finalproject-content">
+                <h3>final project-DEMO影片</h3>
+                <p><a href="https://youtu.be/4oLzsMIDGJc" target="_blank" class="finalproject-link">影片連結</a></p>
+              </div>
+          </section>
+
+          <section id="activity" class="section">
+            <h2>特殊經歷</h2>
+            <div class="activity">
+              <img src="/pic/蹲點.png" alt="屏東內埔黎明社區" class="activity-img">
+              <div class="activity-content">
+                <h3>屏東內埔黎明社區</h3>
+                <p class="activity-date">2024/7/14～7/31</p>
+                <p><a href="https://youth.chtf.org.tw/team/2024/16149" target="_blank" class="activity-link">查看活動詳情</a></p>
+              </div>
+            </div>
+          </section>
+
+
+        </main>
+      </body>
+      </html>
